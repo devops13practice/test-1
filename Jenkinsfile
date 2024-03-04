@@ -6,13 +6,14 @@ pipeline {
     }
 environment {
         JAVA_HOME = "/usr/lib/jvm/java-8-openjdk-amd64"
-        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
         MAVEN_HOME = "/opt/apache-maven-3.9.6"
-        PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+        MVN = "${MAVEN_HOME}/bin"
+        JAVA = "${JAVA_HOME}/bin"
 }
     stages {
         stage("Build"){
             steps {
+               sh 'export PATH=${MVN}:${JAVA}:${PATH}'
                sh 'mvn clean deploy' 
             }
         }
