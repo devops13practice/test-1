@@ -14,7 +14,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    sh "sudo export PATH=${MVN}:${JAVA}:${PATH}"
+                    sh "export PATH=${MVN}:${JAVA}:${PATH}"
                     sh "sudo mvn clean deploy"
                 }
             }
