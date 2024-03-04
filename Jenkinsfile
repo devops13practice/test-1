@@ -4,17 +4,19 @@ pipeline {
             label 'maven'
         }
     }
-environment {
-        JAVA_HOME = "/usr/lib/jvm/java-8-openjdk-amd64"
-        MAVEN_HOME = "/opt/apache-maven-3.9.6"
-        MVN = "${MAVEN_HOME}/bin"
-        JAVA = "${JAVA_HOME}/bin"
-}
+    environment {
+            JAVA_HOME = "/usr/lib/jvm/java-8-openjdk-amd64"
+            MAVEN_HOME = "/opt/apache-maven-3.9.6"
+            MVN = "${MAVEN_HOME}/bin"
+            JAVA = "${JAVA_HOME}/bin"
+    }
     stages {
-        stage("Build"){
+        stage("Build") {
             steps {
-               sh 'export PATH=${MVN}:${JAVA}:${PATH}'
-               sh 'mvn clean deploy' 
+                script {
+                    sh "export PATH=${MVN}:${JAVA}:${PATH}"
+                    sh "mvn clean deploy"
+                }
             }
         }
     }
